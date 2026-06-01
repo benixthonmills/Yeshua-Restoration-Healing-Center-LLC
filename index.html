@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="Yeshua Restoration and Healing Center - Informed Consent for Mental Health Services" />
+  <title>Yeshua Restoration and Healing Center LLC | Consent Form</title>
+  <style>
+    :root{--bg:#f3f6fb;--page-bg:#ffffff;--primary:#0b4790;--success:#1a8f2c;--text:#1c2330;--muted:#5b6a81;--border:#d9dee7;--input-bg:#f7f8fb;--button-bg:#0b4790;--button-hover:#083b78;--danger:#d9534f}
+    *{box-sizing:border-box}
+    body{font-family:Arial,Helvetica,sans-serif;line-height:1.5;color:var(--text);background:var(--bg);margin:0;padding:20px}
+    .app{max-width:920px;margin:0 auto;padding-bottom:24px}
+    .hero-card,.form-card{background:var(--page-bg);border:1px solid var(--border);border-radius:26px;box-shadow:0 22px 50px rgba(15,23,42,.08);position:relative}
+    .hero-card{padding:32px 28px 24px;text-align:center;overflow:hidden}
+
+    .hero-logo{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:16px}
+    .hero-logo img{max-height:110px;width:auto}
+    .hero-title{font-size:2.25rem;font-weight:700;margin:0;color:var(--success);letter-spacing:.02em}
+    .hero-subtitle{font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;margin:12px 0 10px;color:var(--primary)}
+    .hero-text{font-size:1rem;color:var(--text);margin:0 auto 24px;max-width:660px;line-height:1.55}
+    .hero-divider{height:2px;width:180px;background:var(--success);margin:24px auto 0;border-radius:999px}
+    .hero-address{margin:20px auto 0;color:var(--text);font-size:1rem;line-height:1.6}
+    .hero-info{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin:20px auto 0;color:var(--text);font-size:1rem}
+    .hero-info span{display:flex;align-items:center;gap:8px}
+    .hero-bar{margin-top:28px;background:var(--primary);color:#fff;padding:18px 22px;border-radius:18px;display:flex;flex-wrap:wrap;justify-content:center;gap:24px;font-size:1rem}
+    .hero-bar a{color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
+
+    .form-card{padding:28px 28px 30px;margin-top:22px}
+    .form-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}
+    .back-top-btn{background:#fff;color:#000;border:1px solid var(--border);padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:700;display:flex;align-items:center;gap:8px;transition:.2s ease}
+    .back-top-btn:hover{background:#f4f6fb}
+    .progress{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .step{display:flex;flex-direction:column;align-items:center;gap:10px;flex:1;position:relative}
+    .step-marker{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;border:2px solid var(--border);background:#fff;color:var(--muted);transition:.2s ease}
+    .step-label{font-size:.78rem;color:var(--muted);line-height:1.3;text-align:center;max-width:86px}
+    .step.completed .step-marker{background:var(--success);border-color:var(--success);color:#fff}
+    .step.active .step-marker{background:var(--success);border-color:var(--success);color:#fff}
+    .step:not(:last-child)::after{content:'';position:absolute;top:50%;right:-50%;width:100%;height:3px;background:var(--border);transform:translateY(-50%);z-index:-1}
+    .step.completed:not(:last-child)::after{background:var(--success)}
+
+    .page{display:none}
+    .page.active{display:block}
+    .page-header{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+    .page-icon{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(11,71,144,.08);color:var(--button-bg);font-size:1.2rem}
+    .page-header h2{font-size:1.35rem;margin:0;color:var(--button-bg);letter-spacing:.01em}
+    .page-header p{margin:0;color:var(--muted);font-size:1rem}
+
+    .section-item{padding:18px 0;border-bottom:1px solid var(--border);}
+    .section-item:last-child{border-bottom:none}
+    .section-item.with-checkbox{display:flex;align-items:flex-start;gap:16px;padding:18px;border:1px solid var(--border);border-radius:12px;background:#f9fafb;margin-bottom:12px}
+    .section-item.with-checkbox:last-child{border-bottom:1px solid var(--border)}
+    .section-checkbox{width:20px;height:20px;cursor:pointer;flex-shrink:0;margin-top:3px;border:2px solid var(--border);border-radius:4px}
+    .section-checkbox:checked{background:var(--primary);border-color:var(--primary)}
+    .section-heading{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+    .section-number{font-size:1.1rem;font-weight:700;color:var(--button-bg);min-width:30px}
+    .section-title{font-size:1.1rem;font-weight:700;color:var(--button-bg);line-height:1.2}
+    .section-copy{color:var(--text);line-height:1.7;margin:0}
+
+    form fieldset{border:1px solid var(--border);padding:18px;border-radius:18px;margin-bottom:18px;background:#fff}
+    legend{font-weight:700;font-size:1rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .form-group{display:flex;flex-direction:column}
+    label{font-weight:700;margin-bottom:8px;color:var(--text);font-size:.95rem}
+    input, select, textarea{padding:14px 14px;border:1px solid var(--border);border-radius:14px;background:var(--input-bg);color:var(--text);outline:none;transition:.2s ease}
+    input:focus, select:focus, textarea:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(11,71,144,.12)}
+    input::placeholder{color:#9aa1b3}
+    .full-width{grid-column:1/-1}
+    .primary-btn{background:var(--primary);color:#fff;border:none;padding:14px 24px;border-radius:16px;cursor:pointer;font-weight:700;transition:.2s ease;box-shadow:0 14px 28px rgba(11,71,144,.15)}
+    .primary-btn:hover{background:var(--button-hover)}
+    .secondary-btn{background:#fff;color:#000;border:1px solid var(--border);padding:12px 18px;border-radius:16px;cursor:pointer;font-weight:700;transition:.2s ease}
+    .secondary-btn:hover{background:#f4f6fb}
+    .buttons{display:flex;gap:12px;justify-content:space-between;margin-top:18px}
+    .buttons button{min-width:140px}
+    .buttons .primary-btn{padding:14px 24px;border-radius:16px;box-shadow:0 14px 28px rgba(11,71,144,.15)}
+    .buttons .secondary-btn{padding:12px 18px;border-radius:16px;background:#fff;color:var(--text);border:1px solid var(--border);cursor:pointer;font-weight:700;transition:.2s ease}
+    .buttons .secondary-btn:hover{background:#f4f6fb}
+    .buttons .secondary-btn svg{width:16px;height:16px}
+    .submit-btn{background:var(--success);box-shadow:0 14px 28px rgba(26,143,44,.15)}
+    .section-checkbox{margin-right:12px;width:20px;height:20px;cursor:pointer}
+    .section-item.with-checkbox{display:flex;align-items:flex-start;gap:12px}
+    .submit-btn:hover{background:#157b27}
+    .error-message{color:var(--danger);font-size:.92rem;min-height:18px;margin-top:6px}
+    .help-text{font-size:.92rem;color:var(--muted);margin-top:4px}
+    .secure{margin-top:20px;color:var(--muted);font-size:.95rem;display:flex;align-items:center;gap:10px}
+
+    .info-card{display:flex;align-items:center;gap:16px;padding:18px 18px 18px 16px;border-radius:18px;background:rgba(11,71,144,.08);border:1px solid rgba(11,71,144,.16);color:var(--text);margin-top:18px}
+    .info-card svg{width:28px;height:28px;flex-shrink:0}
+    .info-card p{margin:0;font-size:.95rem;color:var(--text);line-height:1.5}
+
+    .checklist{padding-left:22px;margin:12px 0 0;color:var(--text)}
+    .checklist li{margin-bottom:10px;line-height:1.65;list-style:none;position:relative;padding-left:24px}
+    .checklist li::before{content:'✔';position:absolute;left:0;top:0;color:var(--success);font-weight:700}
+
+    .footer{margin-top:22px;text-align:center;color:var(--muted);font-size:.95rem}
+    .footer a{color:inherit;text-decoration:none}
+
+    .loading,.success,.error-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);padding:20px;z-index:10}
+    .loading.hidden,.success.hidden,.error-modal.hidden{display:none}
+    .loading .spinner{width:48px;height:48px;border-radius:50%;border:6px solid rgba(255,255,255,.2);border-top-color:#fff;animation:spin 1s linear infinite;margin-bottom:12px}
+    .loading p{color:#fff}
+    .success-content,.error-content{background:#fff;padding:24px;border-radius:16px;text-align:center;max-width:360px;box-shadow:0 12px 30px rgba(15,23,42,.12)}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    @media (max-width:760px){body{padding:16px}.hero-card,.form-card{border-radius:22px;padding:22px}.hero-bar{flex-direction:column;align-items:center}.form-top{flex-direction:column;align-items:flex-start}.progress{flex-wrap:wrap;justify-content:center}.step:not(:last-child)::after{display:none}.buttons{flex-direction:column;align-items:stretch}.buttons button{width:100%}.page-header{flex-direction:column;align-items:flex-start}.page-icon{width:40px;height:40px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+
+    <section class="page active" id="page0" role="main">
+      <div class="hero-card">
+        <div class="hero-logo">
+          <img id="logoImg" src="assets/main-logo.png" alt="Yeshua Restoration and Healing Center logo" />
+        </div>
+        <div class="hero-title">YESHUA RESTORATION AND HEALING CENTER LLC</div>
+        <div class="hero-subtitle">Informed Consent for Mental Health Services</div>
+        <p class="hero-text">Please read each section carefully and provide the requested information.</p>
+        <p class="hero-address">📍 4690 Millennium Dr. Suite 300, Belcamp MD 21017</p>
+        <button class="primary-btn" id="startBtn" style="padding:18px 32px;font-size:1.1rem" aria-label="Start consent form">Start →</button>
+        <div class="hero-bar">
+          <a href="tel:240-252-4249">☎️ 240-252-4249</a>
+          <a href="tel:240-477-3626">☎️ 240-477-3626</a>
+          <a href="mailto:info@yeshuarhc.com">✉️ info@yeshuarhc.com</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-card" id="formContainer" role="main" aria-hidden="true" style="display:none">
+      <div class="form-top">
+        <button class="back-top-btn" id="topBackBtn" aria-label="Go back">← Return</button>
+        <div class="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="step active" data-step="1"><div class="step-marker">1</div><div class="step-label">Client Information</div></div>
+          <div class="step" data-step="2"><div class="step-marker">2</div><div class="step-label">Services</div></div>
+          <div class="step" data-step="3"><div class="step-marker">3</div><div class="step-label">Confidentiality</div></div>
+          <div class="step" data-step="4"><div class="step-marker">4</div><div class="step-label">Signature</div></div>
+        </div>
+      </div>
+
+      <div class="page active" id="page1">
+        <div class="page-header">
+          <span class="page-icon">👤</span>
+          <div>
+            <h2>STEP 1: CLIENT INFORMATION</h2>
+            <p>Please provide the following information.</p>
+          </div>
+        </div>
+
+        <form id="clientForm" novalidate>
+          <fieldset>
+            <legend>Personal Information</legend>
+            
+            <div class="grid">
+              <div class="form-group">
+                <label for="firstName">First Name <span aria-label="required">*</span></label>
+                <input type="text" id="firstName" name="firstName" required autocomplete="given-name" placeholder="John" />
+                <span class="error-message" id="firstName-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="lastName">Last Name <span aria-label="required">*</span></label>
+                <input type="text" id="lastName" name="lastName" required autocomplete="family-name" placeholder="Doe" />
+                <span class="error-message" id="lastName-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="dob">Date of Birth <span aria-label="required">*</span></label>
+                <input type="text" id="dob" name="dob" required aria-describedby="dob-help" placeholder="MM/DD/YYYY" />
+                <span class="help-text" id="dob-help">Format: MM/DD/YYYY</span>
+                <span class="error-message" id="dob-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number <span aria-label="required">*</span></label>
+                <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(240) 252-4249" />
+                <span class="error-message" id="phone-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address <span aria-label="required">*</span></label>
+                <input type="email" id="email" name="email" required autocomplete="email" placeholder="john.doe@example.com" />
+                <span class="error-message" id="email-error" role="alert"></span>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="address">Street Address <span aria-label="required">*</span></label>
+                <input type="text" id="address" name="address" required autocomplete="street-address" placeholder="123 Main Street" />
+                <span class="error-message" id="address-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="city">City <span aria-label="required">*</span></label>
+                <input type="text" id="city" name="city" required autocomplete="address-level2" placeholder="Belcamp" />
+                <span class="error-message" id="city-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="state">State <span aria-label="required">*</span></label>
+                <select id="state" name="state" required>
+                  <option value="">Select State</option>
+                  <option>MD</option>
+                </select>
+                <span class="error-message" id="state-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="zip">ZIP Code <span aria-label="required">*</span></label>
+                <input type="text" id="zip" name="zip" required autocomplete="postal-code" placeholder="21017" pattern="[0-9]{5}" />
+                <span class="error-message" id="zip-error" role="alert"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Emergency Contact</legend>
+            
+            <div class="grid">
+              <div class="form-group">
+                <label for="emergencyName">Emergency Contact Name <span aria-label="required">*</span></label>
+                <input type="text" id="emergencyName" name="emergencyName" required autocomplete="name" placeholder="Jane Doe" />
+                <span class="error-message" id="emergencyName-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="emergencyPhone">Emergency Contact Phone <span aria-label="required">*</span></label>
+                <input type="tel" id="emergencyPhone" name="emergencyPhone" required autocomplete="tel" placeholder="(240) 477-3626" />
+                <span class="error-message" id="emergencyPhone-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="emergencyRelationship">Relationship to Client</label>
+                <input type="text" id="emergencyRelationship" name="emergencyRelationship" placeholder="Spouse, Parent, etc." />
+              </div>
+            </div>
+          </fieldset>
+        </form>
+
+        <p class="secure">🔒 Your information is encrypted and secure.</p>
+
+        <div class="buttons">
+          <button class="primary-btn" id="toStep2">Continue →</button>
+        </div>
+      </div>
+
+      <div class="page" id="page2">
+        <div class="page-header">
+          <span class="page-icon">📋</span>
+          <div>
+            <h2>STEP 2: INFORMED CONSENT</h2>
+          </div>
+        </div>
+
+        <div class="section-item with-checkbox">
+          <input type="checkbox" class="section-checkbox" id="check1" />
+          <div style="flex: 1;">
+            <div class="section-heading">
+              <div class="section-number">1.</div>
+              <div class="section-title">Purpose of Services</div>
+            </div>
+            <p class="section-copy">I understand that I am seeking psychiatric–mental health services, which may include evaluation, diagnosis, treatment planning, psychotherapy, medication management, and/or other mental health interventions provided by a qualified mental health professional.</p>
+          </div>
+        </div>
+
+        <div class="section-item with-checkbox">
+          <input type="checkbox" class="section-checkbox" id="check2" />
+          <div style="flex: 1;">
+            <div class="section-heading">
+              <div class="section-number">2.</div>
+              <div class="section-title">Nature of Treatment</div>
+            </div>
+            <p class="section-copy">I understand that psychiatric–mental health treatment may involve:</p>
+            <ul>
+              <li>Clinical interviews and mental health assessments</li>
+              <li>Psychotherapy or counseling</li>
+              <li>Prescription and management of psychiatric medications</li>
+              <li>Coordination of care with other healthcare providers</li>
+              <li>Review of my medical, psychological, and social history</li>
+            </ul>
+            <p class="section-copy">The specific treatment approach will be discussed with me and may change based on my needs.</p>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button class="secondary-btn" onclick="prevPage()">← Back</button>
+          <button class="primary-btn" onclick="nextPage()">Continue →</button>
+        </div>
+      </div>
+
+      <div class="page" id="page3">
+        <div class="page-header">
+          <span class="page-icon">📋</span>
+          <div>
+            <h2>STEP 3: INFORMED CONSENT</h2>
+          </div>
+        </div>
+
+        <div class="section-item with-checkbox">
+          <input type="checkbox" class="section-checkbox" id="check3" />
+          <div style="flex: 1;">
+            <div class="section-heading">
+              <div class="section-number">3.</div>
+              <div class="section-title">Benefits and Risks</div>
+            </div>
+            <p class="section-copy">I understand that potential benefits of treatment may include improvement in symptoms, functioning, and overall well-being.</p>
+            <p class="section-copy"><strong>Risks may include:</strong></p>
+            <ul>
+              <li>Emotional discomfort when discussing sensitive topics</li>
+              <li>Possible side effects of medications</li>
+              <li>No guarantee of improvement</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-item with-checkbox">
+          <input type="checkbox" class="section-checkbox" id="check4" />
+          <div style="flex: 1;">
+            <div class="section-heading">
+              <div class="section-number">4.</div>
+              <div class="section-title">Alternatives to Treatment</div>
+            </div>
+            <p class="section-copy">I understand that alternatives may include declining treatment, seeking services from another provider, or using non-psychiatric interventions.</p>
+          </div>
+        </div>
+
+        <div class="section-item with-checkbox">
+          <input type="checkbox" class="section-checkbox" id="check5" />
+          <div style="flex: 1;">
+            <div class="section-heading">
+              <div class="section-number">5.</div>
+              <div class="section-title">Medications (if applicable)</div>
+            </div>
+            <p class="section-copy">If prescribed, I understand:</p>
+            <ul>
+              <li>The purpose of the medication</li>
+              <li>Possible benefits and side effects</li>
+              <li>Risks of not taking medication as prescribed</li>
+              <li>My responsibility to report side effects or concerns</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button class="secondary-btn" onclick="prevPage()">← Back</button>
+          <button class="primary-btn" onclick="nextPage()">Continue →</button>
+        </div>
+      </div>
+
+      <div class="page" id="page4">
+        <div class="page-header">
+          <span class="page-icon">🔒</span>
+          <div>
+            <h2>STEP 4: CONFIDENTIALITY</h2>
+          </div>
+        </div>
+
+        <div class="section-item with-checkbox">
+          <input type="checkbox" class="section-checkbox" id="check6" />
+          <div style="flex: 1;">
+            <div class="section-heading">
+              <div class="section-number">6.</div>
+              <div class="section-title">Confidentiality</div>
+            </div>
+            <p class="section-copy">I understand that information shared during treatment is confidential and protected by law under HIPAA (Health Insurance Portability and Accountability Act).</p>
+            <p class="section-copy"><strong>Exceptions to confidentiality include:</strong></p>
+            <ul>
+              <li>Risk of harm to myself or others</li>
+              <li>Suspected abuse or neglect</li>
+              <li>Court orders or legal requirements</li>
+              <li>Coordination of care with other healthcare providers (with consent)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-item with-checkbox">
+          <input type="checkbox" class="section-checkbox" id="check7" />
+          <div style="flex: 1;">
+            <div class="section-heading">
+              <div class="section-number">7.</div>
+              <div class="section-title">Client Rights and Responsibilities</div>
+            </div>
+            <p class="section-copy"><strong>I understand my rights include:</strong></p>
+            <ul>
+              <li>Ask questions about my treatment at any time</li>
+              <li>Participate actively in treatment decisions</li>
+              <li>Withdraw consent at any time (with notice)</li>
+              <li>Access to my medical records</li>
+              <li>Request amendments to my records</li>
+              <li>Receive notice of privacy practices</li>
+            </ul>
+            <p class="section-copy"><strong>My responsibilities include:</strong></p>
+            <ul>
+              <li>Provide accurate and complete information</li>
+              <li>Inform provider of any changes in my condition</li>
+              <li>Follow treatment recommendations</li>
+              <li>Inform provider of medications from other sources</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button class="secondary-btn" onclick="prevPage()">← Back</button>
+          <button class="primary-btn" onclick="nextPage()">Continue →</button>
+        </div>
+      </div>
+
+      <div class="page" id="page5">
+        <div class="page-header">
+          <span class="page-icon">✍️</span>
+          <div>
+            <h2>STEP 5: CONSENT</h2>
+          </div>
+        </div>
+
+        <div class="section-item with-checkbox">
+          <div style="flex: 1; width: 100%;">
+            <div class="section-heading">
+              <div class="section-number">8.</div>
+              <div class="section-title">Consent</div>
+            </div>
+            <p class="section-copy">I acknowledge that:</p>
+            <div style="padding-left: 0; margin: 12px 0 0;">
+              <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px;">
+                <input type="checkbox" id="consentCheck1" style="margin-top: 2px; flex-shrink: 0;" />
+                <label for="consentCheck1" style="margin: 0; font-weight: normal; cursor: pointer;">I have read and understood this consent form</label>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px;">
+                <input type="checkbox" id="consentCheck2" style="margin-top: 2px; flex-shrink: 0;" />
+                <label for="consentCheck2" style="margin: 0; font-weight: normal; cursor: pointer;">My questions have been answered to my satisfaction</label>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" id="consentCheck3" style="margin-top: 2px; flex-shrink: 0;" />
+                <label for="consentCheck3" style="margin: 0; font-weight: normal; cursor: pointer;">I voluntarily consent to receive psychiatric–mental health services</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form id="signatureForm" novalidate>
+          <div class="grid">
+            <div class="form-group full-width">
+              <label for="clientSignature">Client Signature <span aria-label="required">*</span></label>
+              <div class="signature-input-row">
+                <input type="text" id="clientSignature" name="clientSignature" placeholder="Type or sign your name" />
+                <button type="button" class="secondary-btn" id="clearTextSig">Clear</button>
+              </div>
+              <span class="error-message" id="clientSignature-error" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="printedName">Printed Name <span aria-label="required">*</span></label>
+              <input type="text" id="printedName" name="printedName" placeholder="Full Name" />
+              <span class="error-message" id="printedName-error" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="signatureDate">Date <span aria-label="required">*</span></label>
+              <input type="text" id="signatureDate" name="signatureDate" placeholder="MM/DD/YYYY" />
+              <span class="error-message" id="signatureDate-error" role="alert"></span>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="guardianName">Legal Guardian / Authorized Representative Signature</label>
+              <div class="signature-input-row">
+                <input type="text" id="guardianName" name="guardianName" placeholder="Type or sign your name" />
+                <button type="button" class="secondary-btn" id="clearGuardianSig">Clear</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="guardianDate">Date</label>
+              <input type="text" id="guardianDate" name="guardianDate" placeholder="MM/DD/YYYY" />
+            </div>
+
+            <div class="form-group">
+              <label for="relationship">Relationship to Client</label>
+              <input type="text" id="relationship" name="relationship" placeholder="Relationship" />
+            </div>
+          </div>
+        </form>
+
+        <div class="info-card">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p>Your consent form has been saved. The company will store a copy in their records folder.</p>
+        </div>
+
+        <div class="buttons">
+          <button type="button" class="secondary-btn" onclick="prevPage()">← Back</button>
+          <button class="primary-btn submit-btn" id="submitBtn">Submit ✈</button>
+        </div>
+      </div>
+
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <p>🔒 Your information is encrypted and securely transmitted under HIPAA guidelines.</p>
+        <p>
+          📞 <a href="tel:240-252-4249">240-252-4249</a> | 
+          📞 <a href="tel:240-477-3626">240-477-3626</a> | 
+          ✉️ <a href="mailto:info@yeshuarhc.com">info@yeshuarhc.com</a>
+        </p>
+        <p><small>© 2024 Yeshua Restoration and Healing Center LLC | All Rights Reserved</small></p>
+      </div>
+    </footer>
+
+  </div>
+
+  <div id="loading" class="loading hidden" role="status" aria-live="polite">
+    <div class="spinner"></div>
+    <p>Submitting securely...</p>
+  </div>
+
+  <div id="success" class="success hidden" role="alert" aria-live="assertive">
+    <div class="success-content">
+      <h2>✓ Success!</h2>
+      <p>Your consent form has been successfully saved and downloaded.</p>
+      <p>A copy is stored in the company's records folder for your protection.</p>
+      <div style="display: flex; gap: 10px; flex-direction: column;">
+        <button id="newForm" class="primary-btn">Start New Form</button>
+        <button id="downloadCompanyRecords" class="secondary-btn" style="margin-top: 8px;">📥 Download Company Records</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="errorModal" class="error-modal hidden" role="alert" aria-live="assertive">
+    <div class="error-content">
+      <h2>Error</h2>
+      <p id="errorMessage"></p>
+      <button id="closeError" class="primary-btn">OK</button>
+    </div>
+  </div>
+
+  <script>
+    // Basic multi-step navigation
+    const startBtn = document.getElementById('startBtn');
+    const formContainer = document.getElementById('formContainer');
+    const topBackBtn = document.getElementById('topBackBtn');
+    const steps = Array.from(document.querySelectorAll('.progress .step'));
+    const pages = Array.from(document.querySelectorAll('#formContainer .page'));
+    let current = 0;
+
+    function showForm() {
+      document.getElementById('page0').classList.remove('active');
+      formContainer.style.display = '';
+      formContainer.setAttribute('aria-hidden','false');
+      goToPage(0);
+    }
+
+    startBtn?.addEventListener('click', showForm);
+
+    function updateProgress(idx) {
+      steps.forEach((step, i) => {
+        const marker = step.querySelector('.step-marker');
+        step.classList.toggle('active', i === idx);
+        step.classList.toggle('completed', i < idx);
+        if (marker) marker.textContent = i < idx ? '✓' : String(i + 1);
+      });
+    }
+
+    function setBackButton(idx) {
+      if (!topBackBtn) return;
+      topBackBtn.style.visibility = 'visible';
+    }
+
+    function goToPage(idx) {
+      pages.forEach((p, i) => p.classList.toggle('active', i === idx));
+      updateProgress(idx);
+      setBackButton(idx);
+      current = idx;
+    }
+
+    topBackBtn?.addEventListener('click', () => {
+      if (current === 0) {
+        document.getElementById('page0').classList.add('active');
+        formContainer.style.display = 'none';
+        formContainer.setAttribute('aria-hidden','true');
+        current = -1;
+      } else {
+        prevPage();
+      }
+    });
+
+    // Try to load the site's favicon as a logo (fallback to text if unavailable)
+    try{
+      const logoImg = document.getElementById('logoImg');
+      if(logoImg){
+        logoImg.src = 'assets/main-logo.png';
+        logoImg.onerror = ()=>{ logoImg.style.display='none'; };
+      }
+    }catch(e){}
+
+    function nextPage(){ if(current < pages.length -1) goToPage(current+1); }
+    function prevPage(){ if(current > 0) goToPage(current-1); }
+
+    document.getElementById('toStep2').addEventListener('click', ()=>{ if(validateStep1()) nextPage(); });
+
+    // Validation for Step 1
+    function validateStep1(){
+      const required = ['firstName','lastName','dob','phone','email','address','city','state','zip','emergencyName','emergencyPhone'];
+      let ok = true;
+      required.forEach(id=>{
+        const el = document.getElementById(id);
+        const err = document.getElementById(id+'-error');
+        if(!el) return;
+        if(!el.value || (el.pattern && !(new RegExp(el.pattern).test(el.value)))){
+          err.textContent = 'This field is required or invalid';
+          ok = false;
+        } else err.textContent = '';
+      });
+      return ok;
+    }
+
+    // Signature fields
+    const clearTextSig = document.getElementById('clearTextSig');
+    const clearGuardianSig = document.getElementById('clearGuardianSig');
+
+    clearTextSig?.addEventListener('click', () => {
+      const sig = document.getElementById('clientSignature');
+      if(sig) sig.value = '';
+      const err = document.getElementById('clientSignature-error');
+      if(err) err.textContent = '';
+    });
+
+    clearGuardianSig?.addEventListener('click', () => {
+      const sig = document.getElementById('guardianName');
+      if(sig) sig.value = '';
+    });
+
+    function validateSignaturePage(){
+      let ok = true;
+      const clientSig = document.getElementById('clientSignature');
+      const printed = document.getElementById('printedName');
+      const date = document.getElementById('signatureDate');
+      if(clientSig && !clientSig.value){ document.getElementById('clientSignature-error').textContent='Required'; ok=false; } else document.getElementById('clientSignature-error').textContent='';
+      if(printed && !printed.value){ document.getElementById('printedName-error').textContent='Required'; ok=false; } else document.getElementById('printedName-error').textContent='';
+      if(date && !date.value){ document.getElementById('signatureDate-error').textContent='Required'; ok=false; } else document.getElementById('signatureDate-error').textContent='';
+      return ok;
+    }
+
+    // Submit - produce a downloadable HTML snapshot including signature
+    document.getElementById('submitBtn').addEventListener('click', submitForm);
+    async function submitForm(){
+      if(!validateSignaturePage()) return showError('Please complete required fields.');
+
+      showLoading(true);
+      const data = gatherFormData();
+      const date = document.getElementById('signatureDate');
+      const docHtml = buildDownloadHtml(data);
+      const blob = new Blob([docHtml], {type:'text/html'});
+      const name = `consent-${(data.firstName||'client')}-${(date?.value||'signed')}.html`.replace(/\s+/g,'_');
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+
+      // Save to localStorage for company records
+      saveToCompanyRecords(data, date?.value);
+
+      showLoading(false);
+      showSuccess();
+    }
+
+    function saveToCompanyRecords(data, date) {
+      try {
+        let records = JSON.parse(localStorage.getItem('companyConsentRecords') || '[]');
+        records.push({
+          ...data,
+          submittedDate: new Date().toISOString(),
+          signatureDate: date
+        });
+        localStorage.setItem('companyConsentRecords', JSON.stringify(records));
+      } catch(e) {
+        console.log('Could not save to company records');
+      }
+    }
+
+    function gatherFormData(){ const out={}; new FormData(document.getElementById('clientForm')).forEach((v,k)=>out[k]=v); new FormData(document.getElementById('signatureForm')).forEach((v,k)=>out[k]=v); return out; }
+
+    function buildDownloadHtml(data, sig){
+      const fields = Object.entries(data).map(([k,v])=>`<tr><td style="padding:6px 8px;border:1px solid #e5e7eb"><strong>${k}</strong></td><td style="padding:6px 8px;border:1px solid #e5e7eb">${escapeHtml(v)}</td></tr>`).join('');
+      return `<!doctype html><html><head><meta charset="utf-8"><title>Consent</title><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><div style="font-family:Arial,Helvetica,sans-serif;max-width:700px;margin:0 auto;padding:20px"><h1>Consent Form</h1><table style="border-collapse:collapse;width:100%">${fields}</table><h3>Signature</h3><img src="${sig}" alt="signature" style="max-width:100%;height:auto;border:1px solid #e5e7eb;padding:6px;border-radius:6px"/></div></body></html>`;
+    }
+
+    function escapeHtml(str){ if(!str) return ''; return String(str).replace(/[&<>\"]/g, s=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[s])); }
+
+    function showLoading(v){ document.getElementById('loading').classList.toggle('hidden', !v); }
+    function showSuccess(){ document.getElementById('success').classList.remove('hidden'); }
+    function showError(msg){ document.getElementById('errorMessage').textContent = msg; document.getElementById('errorModal').classList.remove('hidden'); }
+
+    document.getElementById('closeError').addEventListener('click', ()=>document.getElementById('errorModal').classList.add('hidden'));
+    document.getElementById('newForm').addEventListener('click', ()=>location.reload());
+    document.getElementById('downloadCompanyRecords').addEventListener('click', downloadCompanyRecordsFile);
+
+    function downloadCompanyRecordsFile() {
+      try {
+        const records = JSON.parse(localStorage.getItem('companyConsentRecords') || '[]');
+        if(records.length === 0) {
+          alert('No records to download yet.');
+          return;
+        }
+        const jsonStr = JSON.stringify(records, null, 2);
+        const blob = new Blob([jsonStr], {type:'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `company-consent-records-${new Date().toISOString().split('T')[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      } catch(e) {
+        alert('Error downloading records: ' + e.message);
+      }
+    }
+
+    // small accessibility: allow keyboard navigation for progress (left/right)
+    window.addEventListener('keydown', (e)=>{
+      if(e.key==='ArrowRight') nextPage();
+      if(e.key==='ArrowLeft') prevPage();
+    });
+  </script>
+</body>
+</html>
