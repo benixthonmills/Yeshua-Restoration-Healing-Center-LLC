@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Yeshua Restoration and Healing Center - Informed Consent for Mental Health Services" />
+  <title>Yeshua Restoration and Healing Center LLC | Consent Form</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1a5276;
+      --primary-light: #2e86c1;
+      --accent: #1e8449;
+      --accent-light: #27ae60;
+      --bg: #f4f8fb;
+      --card: #ffffff;
+      --text: #1c2833;
+      --muted: #566573;
+      --border: #d5dbdb;
+      --error: #c0392b;
+      --success: #1e8449;
+      --radius: 10px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 28px 20px 20px;
+    }
+    header img { max-width: 120px; margin-bottom: 12px; }
+    header h1 { font-size: 1.3rem; font-weight: 700; letter-spacing: 0.5px; }
+    header p { font-size: 0.9rem; opacity: 0.85; margin-top: 4px; }
+
+    .contact-bar {
+      background: var(--primary-light);
+      color: #fff;
+      text-align: center;
+      padding: 8px;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .contact-bar a { color: #fff; text-decoration: none; }
+
+    .progress-bar {
+      background: #d6eaf8;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .step-item.active { color: var(--primary); font-weight: 600; }
+    .step-item.done { color: var(--accent); }
+    .step-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700;
+      background: #fff;
+    }
+    .step-item.active .step-dot { border-color: var(--primary); background: var(--primary); color: #fff; }
+    .step-item.done .step-dot { border-color: var(--accent); background: var(--accent); color: #fff; }
+    .step-line { width: 30px; height: 2px; background: var(--border); margin: 0 4px; }
+    .step-item.done + .step-connector { background: var(--accent); }
+
+    main { flex: 1; padding: 24px 16px 40px; max-width: 680px; margin: 0 auto; width: 100%; }
+
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 24px;
+      margin-bottom: 16px;
+    }
+
+    .card-icon { font-size: 2rem; margin-bottom: 8px; }
+    .card h2 { font-size: 1.2rem; color: var(--primary); margin-bottom: 4px; }
+    .card .subtitle { color: var(--muted); font-size: 0.88rem; margin-bottom: 20px; }
+
+    .section-label {
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--primary); margin: 20px 0 12px;
+      padding-bottom: 6px; border-bottom: 2px solid #d6eaf8;
+    }
+    .section-label:first-of-type { margin-top: 0; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-grid .full { grid-column: 1 / -1; }
+
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .field label .opt { font-weight: 400; color: var(--muted); font-size: 0.78rem; margin-left: 4px; }
+    .field input, .field select {
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .field input:focus, .field select:focus { border-color: var(--primary-light); }
+    .field input.error { border-color: var(--error); }
+    .field .err-msg { color: var(--error); font-size: 0.78rem; display: none; }
+    .field.has-error .err-msg { display: block; }
+
+    .consent-section { margin-bottom: 18px; }
+    .consent-section h3 {
+      font-size: 1rem; color: var(--primary); margin-bottom: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .consent-number {
+      background: var(--primary); color: #fff;
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+    }
+    .consent-section p, .consent-section li {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.6;
+    }
+    .consent-section ul { padding-left: 20px; margin-top: 6px; }
+    .risk-box {
+      background: #fef9e7;
+      border-left: 4px solid #f39c12;
+      border-radius: 4px;
+      padding: 10px 14px;
+      margin-top: 8px;
+    }
+    .risk-box p { font-weight: 600; color: #7d6608; font-size: 0.85rem; margin-bottom: 4px; }
+
+    /* Signature canvas */
+    .sig-container {
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      background: #f9f9f9;
+      position: relative;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .sig-container canvas { display: block; touch-action: none; cursor: crosshair; width: 100%; }
+    .sig-label {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      color: #ccc; font-size: 0.85rem; pointer-events: none; text-align: center;
+      transition: opacity 0.2s;
+    }
+    .sig-clear {
+      position: absolute; top: 6px; right: 8px;
+      background: none; border: 1px solid var(--border);
+      border-radius: 4px; padding: 3px 8px;
+      font-size: 0.75rem; cursor: pointer; color: var(--muted);
+    }
+
+    .checkbox-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: #eaf4fb; border-radius: 6px; padding: 12px;
+      margin-bottom: 10px;
+    }
+    .checkbox-row input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: var(--primary); }
+    .checkbox-row label { font-size: 0.87rem; color: var(--text); line-height: 1.4; cursor: pointer; }
+
+    .guardian-divider {
+      border: none; border-top: 2px dashed var(--border);
+      margin: 24px 0 16px;
+    }
+    .guardian-label {
+      text-align: center; color: var(--muted);
+      font-size: 0.82rem; margin-bottom: 16px;
+    }
+
+    .btn-row { display: flex; gap: 12px; margin-top: 20px; }
+    .btn {
+      flex: 1; padding: 13px;
+      border: none; border-radius: 8px;
+      font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s, transform 0.1s;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-light); }
+    .btn-secondary { background: #eaf4fb; color: var(--primary); border: 1.5px solid #aed6f1; }
+    .btn-secondary:hover { background: #d6eaf8; }
+    .btn-submit { background: var(--accent); color: #fff; }
+    .btn-submit:hover { background: var(--accent-light); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .security-note {
+      text-align: center; font-size: 0.78rem; color: var(--muted);
+      margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 5px;
+    }
+
+    /* Landing page */
+    .landing { text-align: center; padding: 12px 0; }
+    .landing .address { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
+    .landing .start-btn {
+      background: var(--accent); color: #fff;
+      border: none; border-radius: 8px;
+      padding: 16px 40px; font-size: 1.05rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .landing .start-btn:hover { background: var(--accent-light); }
+    .landing p.intro { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 24px; }
+
+    /* Success */
+    .success-card { text-align: center; padding: 40px 24px; }
+    .success-icon { font-size: 4rem; margin-bottom: 16px; }
+    .success-card h2 { color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
+    .success-card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 24px; }
+    .success-card .new-btn {
+      background: var(--primary); color: #fff;
+      border: none; border-radius: 8px;
+      padding: 12px 28px; font-size: 0.95rem; font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Loading overlay */
+    .overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45); z-index: 999;
+      align-items: center; justify-content: center;
+    }
+    .overlay.active { display: flex; }
+    .spinner-card {
+      background: #fff; border-radius: 12px; padding: 32px 40px;
+      text-align: center;
+    }
+    .spinner {
+      width: 48px; height: 48px;
+      border: 5px solid #d6eaf8;
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner-card p { color: var(--text); font-size: 0.95rem; }
+
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 14px;
+      font-size: 0.8rem;
+    }
+    footer a { color: rgba(255,255,255,0.9); }
+
+    @media (max-width: 480px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid .full { grid-column: 1; }
+      .card { padding: 20px 16px; }
+      .step-item span { display: none; }
+      .step-line { width: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="assets/main-logo.png" alt="Yeshua Restoration and Healing Center logo" onerror="this.style.display='none'" />
+  <h1>YESHUA RESTORATION AND HEALING CENTER LLC</h1>
+  <p>Informed Consent for Mental Health Services</p>
+</header>
+
+<div class="contact-bar">
+  <a href="tel:240-252-4249">☎️ 240-252-4249</a>
+  <a href="tel:240-477-3626">☎️ 240-477-3626</a>
+  <a href="mailto:info@yeshuarhc.com">✉️ info@yeshuarhc.com</a>
+</div>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar" style="display:none;">
+  <div class="step-item" id="pStep1">
+    <div class="step-dot">1</div><span>Info</span>
+  </div>
+  <div class="step-line"></div>
+  <div class="step-item" id="pStep2">
+    <div class="step-dot">2</div><span>Services</span>
+  </div>
+  <div class="step-line"></div>
+  <div class="step-item" id="pStep3">
+    <div class="step-dot">3</div><span>Privacy</span>
+  </div>
+  <div class="step-line"></div>
+  <div class="step-item" id="pStep4">
+    <div class="step-dot">4</div><span>Signature</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- PAGE 0: LANDING -->
+  <div class="page active" id="page0">
+    <div class="card landing">
+      <div class="card-icon">📋</div>
+      <h2 style="color:var(--primary);font-size:1.3rem;margin-bottom:8px;">Informed Consent Form</h2>
+      <p class="address">📍 4690 Millennium Dr. Suite 300, Belcamp MD 21017</p>
+      <p class="intro">Please read each section carefully and provide the requested information.<br/>This form is required before receiving mental health services.</p>
+      <button class="start-btn" onclick="goTo(1)">Start →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 1: CLIENT INFO -->
+  <div class="page" id="page1">
+    <div class="card">
+      <div class="card-icon">👤</div>
+      <h2>STEP 1: CLIENT INFORMATION</h2>
+      <p class="subtitle">Please provide the following information.</p>
+
+      <div class="section-label">Personal Information</div>
+      <div class="form-grid">
+        <div class="field" id="f-firstName">
+          <label for="firstName">First Name <span style="color:red">*</span></label>
+          <input type="text" id="firstName" placeholder="First name" />
+          <span class="err-msg">Required</span>
+        </div>
+        <div class="field" id="f-lastName">
+          <label for="lastName">Last Name <span style="color:red">*</span></label>
+          <input type="text" id="lastName" placeholder="Last name" />
+          <span class="err-msg">Required</span>
+        </div>
+        <div class="field" id="f-dob">
+          <label for="dob">Date of Birth <span style="color:red">*</span></label>
+          <input type="text" id="dob" placeholder="MM/DD/YYYY" maxlength="10" />
+          <span class="err-msg">Required (MM/DD/YYYY)</span>
+        </div>
+        <div class="field" id="f-phone">
+          <label for="phone">Phone Number <span style="color:red">*</span></label>
+          <input type="tel" id="phone" placeholder="(000) 000-0000" />
+          <span class="err-msg">Required</span>
+        </div>
+        <div class="field full" id="f-email">
+          <label for="email">Email Address <span class="opt">(optional)</span></label>
+          <input type="email" id="email" placeholder="email@example.com (optional)" />
+        </div>
+        <div class="field full" id="f-address">
+          <label for="address">Street Address <span style="color:red">*</span></label>
+          <input type="text" id="address" placeholder="123 Main St" />
+          <span class="err-msg">Required</span>
+        </div>
+        <div class="field" id="f-city">
+          <label for="city">City <span style="color:red">*</span></label>
+          <input type="text" id="city" placeholder="City" />
+          <span class="err-msg">Required</span>
+        </div>
+        <div class="field" id="f-state">
+          <label for="state">State <span style="color:red">*</span></label>
+          <select id="state">
+            <option value="">Select State</option>
+            <option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option>
+            <option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option>
+            <option value="CT">CT</option><option value="DE">DE</option><option value="FL">FL</option>
+            <option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option>
+            <option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option>
+            <option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option>
+            <option value="ME">ME</option><option value="MD" selected>MD</option><option value="MA">MA</option>
+            <option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option>
+            <option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option>
+            <option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option>
+            <option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option>
+            <option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option>
+            <option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option>
+            <option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option>
+            <option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option>
+            <option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option>
+            <option value="WI">WI</option><option value="WY">WY</option><option value="DC">DC</option>
+          </select>
+          <span class="err-msg">Required</span>
+        </div>
+        <div class="field" id="f-zip">
+          <label for="zip">ZIP Code <span style="color:red">*</span></label>
+          <input type="text" id="zip" placeholder="00000" maxlength="5" />
+          <span class="err-msg">Required</span>
+        </div>
+      </div>
+
+      <div class="section-label">Emergency Contact</div>
+      <div class="form-grid">
+        <div class="field" id="f-emergencyName">
+          <label for="emergencyName">Emergency Contact Name <span style="color:red">*</span></label>
+          <input type="text" id="emergencyName" placeholder="Full name" />
+          <span class="err-msg">Required</span>
+        </div>
+        <div class="field" id="f-emergencyPhone">
+          <label for="emergencyPhone">Emergency Contact Phone <span style="color:red">*</span></label>
+          <input type="tel" id="emergencyPhone" placeholder="(000) 000-0000" />
+          <span class="err-msg">Required</span>
+        </div>
+        <div class="field full">
+          <label for="emergencyRelationship">Relationship to Client</label>
+          <input type="text" id="emergencyRelationship" placeholder="e.g. Spouse, Parent, Sibling" />
+        </div>
+      </div>
+
+      <p class="security-note">🔒 Your information is encrypted and secure.</p>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goTo(0)">← Back</button>
+        <button class="btn btn-primary" onclick="validateStep1()">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: SERVICES -->
+  <div class="page" id="page2">
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h2>STEP 2: INFORMED CONSENT</h2>
+      <p class="subtitle">Please read the following carefully.</p>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">1</span> Purpose of Services</h3>
+        <p>I understand that I am seeking psychiatric–mental health services, which may include evaluation, diagnosis, treatment planning, psychotherapy, medication management, and/or other mental health interventions provided by a qualified mental health professional.</p>
+      </div>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">2</span> Nature of Treatment</h3>
+        <p>I understand that psychiatric–mental health treatment may involve:</p>
+        <ul>
+          <li>Clinical interviews and mental health assessments</li>
+          <li>Psychotherapy or counseling</li>
+          <li>Prescription and management of psychiatric medications</li>
+          <li>Coordination of care with other healthcare providers</li>
+          <li>Review of my medical, psychological, and social history</li>
+        </ul>
+        <p style="margin-top:8px;">The specific treatment approach will be discussed with me and may change based on my needs.</p>
+      </div>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">3</span> Benefits and Risks</h3>
+        <p>I understand that potential benefits of treatment may include improvement in symptoms, functioning, and overall well-being.</p>
+        <div class="risk-box">
+          <p>⚠️ Risks may include:</p>
+          <ul>
+            <li>Emotional discomfort when discussing sensitive topics</li>
+            <li>Possible side effects of medications</li>
+            <li>No guarantee of improvement</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">4</span> Alternatives to Treatment</h3>
+        <p>I understand that alternatives may include declining treatment, seeking services from another provider, or using non-psychiatric interventions.</p>
+      </div>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">5</span> Medications (if applicable)</h3>
+        <p>If prescribed, I understand the purpose of the medication, possible benefits and side effects, risks of not taking medication as prescribed, and my responsibility to report side effects or concerns.</p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goTo(1)">← Back</button>
+        <button class="btn btn-primary" onclick="goTo(3)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: CONFIDENTIALITY -->
+  <div class="page" id="page3">
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <h2>STEP 3: CONFIDENTIALITY</h2>
+      <p class="subtitle">Your rights and our privacy obligations.</p>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">6</span> Confidentiality</h3>
+        <p>I understand that information shared during treatment is confidential and protected by law under HIPAA (Health Insurance Portability and Accountability Act).</p>
+        <div class="risk-box" style="background:#eaf4fb;border-color:#2e86c1;">
+          <p style="color:#1a5276;">Exceptions to confidentiality include:</p>
+          <ul>
+            <li>Risk of harm to myself or others</li>
+            <li>Suspected abuse or neglect</li>
+            <li>Court orders or legal requirements</li>
+            <li>Coordination of care with other healthcare providers (with consent)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">7</span> Client Rights and Responsibilities</h3>
+        <p><strong>I understand my rights include:</strong></p>
+        <ul>
+          <li>Ask questions about my treatment at any time</li>
+          <li>Participate actively in treatment decisions</li>
+          <li>Withdraw consent at any time (with notice)</li>
+          <li>Access to my medical records</li>
+          <li>Request amendments to my records</li>
+          <li>Receive notice of privacy practices</li>
+        </ul>
+        <p style="margin-top:10px;"><strong>My responsibilities include:</strong></p>
+        <ul>
+          <li>Provide accurate and complete information</li>
+          <li>Inform provider of any changes in my condition</li>
+          <li>Follow treatment recommendations</li>
+          <li>Inform provider of medications from other sources</li>
+        </ul>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goTo(2)">← Back</button>
+        <button class="btn btn-primary" onclick="goTo(4)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 4: SIGNATURE -->
+  <div class="page" id="page4">
+    <div class="card">
+      <div class="card-icon">✍️</div>
+      <h2>STEP 4: CONSENT & SIGNATURE</h2>
+      <p class="subtitle">Review and sign below to complete your consent.</p>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="ack1" />
+        <label for="ack1">I have read and understood this consent form</label>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="ack2" />
+        <label for="ack2">My questions have been answered to my satisfaction</label>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="ack3" />
+        <label for="ack3">I voluntarily consent to receive psychiatric–mental health services</label>
+      </div>
+
+      <div class="section-label" style="margin-top:20px;">Client Signature</div>
+      <div class="field" id="f-sigCanvas">
+        <label>Signature <span style="color:red">*</span></label>
+        <div class="sig-container">
+          <canvas id="sigCanvas" height="130"></canvas>
+          <span class="sig-label" id="sigLabel">Sign here with your finger or mouse</span>
+          <button class="sig-clear" onclick="clearSig('sigCanvas','sigLabel')">Clear</button>
+        </div>
+        <span class="err-msg">Please provide your signature</span>
+      </div>
+
+      <div class="form-grid" style="margin-top:14px;">
+        <div class="field full" id="f-printedName">
+          <label for="printedName">Printed Name <span style="color:red">*</span></label>
+          <input type="text" id="printedName" placeholder="Full legal name" />
+          <span class="err-msg">Required</span>
+        </div>
+        <div class="field" id="f-sigDate">
+          <label for="sigDate">Date <span style="color:red">*</span></label>
+          <input type="text" id="sigDate" placeholder="MM/DD/YYYY" maxlength="10" />
+          <span class="err-msg">Required</span>
+        </div>
+      </div>
+
+      <hr class="guardian-divider" />
+      <p class="guardian-label">— Legal Guardian / Authorized Representative (if applicable) —</p>
+
+      <div class="field">
+        <label>Guardian Signature <span class="opt">(if applicable)</span></label>
+        <div class="sig-container">
+          <canvas id="guardianCanvas" height="110"></canvas>
+          <span class="sig-label" id="guardianLabel">Guardian sign here (optional)</span>
+          <button class="sig-clear" onclick="clearSig('guardianCanvas','guardianLabel')">Clear</button>
+        </div>
+      </div>
+
+      <div class="form-grid" style="margin-top:14px;">
+        <div class="field">
+          <label for="guardianDate">Date</label>
+          <input type="text" id="guardianDate" placeholder="MM/DD/YYYY" maxlength="10" />
+        </div>
+        <div class="field">
+          <label for="guardianRelationship">Relationship to Client</label>
+          <input type="text" id="guardianRelationship" placeholder="e.g. Parent, Guardian" />
+        </div>
+      </div>
+
+      <p class="security-note" style="margin-top:20px;">🔒 Your information is encrypted and securely transmitted under HIPAA guidelines.</p>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goTo(3)">← Back</button>
+        <button class="btn btn-submit" id="submitBtn" onclick="submitForm()">Submit ✈</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 5: SUCCESS -->
+  <div class="page" id="page5">
+    <div class="card success-card">
+      <div class="success-icon">✅</div>
+      <h2>Form Submitted Successfully!</h2>
+      <p>Your consent form has been securely saved.<br/>A copy has been recorded in the company's records.</p>
+      <button class="new-btn" onclick="resetForm()">Start New Form</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- Loading Overlay -->
+<div class="overlay" id="loadingOverlay">
+  <div class="spinner-card">
+    <div class="spinner"></div>
+    <p>Submitting securely…</p>
+  </div>
+</div>
+
+<footer>
+  📞 <a href="tel:240-252-4249">240-252-4249</a> &nbsp;|&nbsp;
+  📞 <a href="tel:240-477-3626">240-477-3626</a> &nbsp;|&nbsp;
+  ✉️ <a href="mailto:info@yeshuarhc.com">info@yeshuarhc.com</a><br/>
+  <br/>© 2024 Yeshua Restoration and Healing Center LLC | All Rights Reserved
+</footer>
+
+<script>
+  // ─────────────────────────────────────────────
+  // ⚙️  CONFIGURATION — PASTE YOUR SCRIPT URL HERE
+  // ─────────────────────────────────────────────
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyppQdils-Mq1SNDmDsTghymQSx5271hKogqEt6-gyRA-VYp73PbOWgz4DGRtQY-9OD/exec";
+  // ─────────────────────────────────────────────
+
+  let currentPage = 0;
+  let sigDrawn = { sigCanvas: false, guardianCanvas: false };
+
+  // ── Navigation ──
+  function goTo(n) {
+    document.getElementById("page" + currentPage).classList.remove("active");
+    document.getElementById("page" + n).classList.add("active");
+    currentPage = n;
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function updateProgress() {
+    const bar = document.getElementById("progressBar");
+    bar.style.display = currentPage >= 1 && currentPage <= 4 ? "flex" : "none";
+    for (let i = 1; i <= 4; i++) {
+      const el = document.getElementById("pStep" + i);
+      el.classList.remove("active", "done");
+      if (i < currentPage) el.classList.add("done");
+      if (i === currentPage) el.classList.add("active");
+    }
+  }
+
+  // ── Validation helpers ──
+  function req(id) {
+    const f = document.getElementById("f-" + id);
+    const v = document.getElementById(id).value.trim();
+    if (!v || v === "") {
+      f && f.classList.add("has-error");
+      return false;
+    }
+    f && f.classList.remove("has-error");
+    return true;
+  }
+
+  function validateStep1() {
+    const fields = ["firstName","lastName","dob","phone","address","city","state","zip","emergencyName","emergencyPhone"];
+    let ok = true;
+    fields.forEach(id => { if (!req(id)) ok = false; });
+    if (ok) goTo(2);
+  }
+
+  // ── Signature canvas ──
+  function initCanvas(id) {
+    const canvas = document.getElementById(id);
+    const ctx = canvas.getContext("2d");
+    canvas.width = canvas.offsetWidth || canvas.parentElement.offsetWidth || 600;
+    ctx.strokeStyle = "#1a5276";
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = "round";
+    let drawing = false, lastX = 0, lastY = 0;
+
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      if (e.touches) {
+        return [(e.touches[0].clientX - rect.left) * scaleX, (e.touches[0].clientY - rect.top) * scaleY];
+      }
+      return [(e.clientX - rect.left) * scaleX, (e.clientY - rect.top) * scaleY];
+    }
+
+    function start(e) {
+      e.preventDefault();
+      drawing = true;
+      [lastX, lastY] = getPos(e);
+      document.getElementById(id === "sigCanvas" ? "sigLabel" : "guardianLabel").style.opacity = "0";
+      sigDrawn[id] = true;
+    }
+    function move(e) {
+      if (!drawing) return;
+      e.preventDefault();
+      const [x, y] = getPos(e);
+      ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(x, y); ctx.stroke();
+      lastX = x; lastY = y;
+    }
+    function stop() { drawing = false; }
+
+    canvas.addEventListener("mousedown", start);
+    canvas.addEventListener("mousemove", move);
+    canvas.addEventListener("mouseup", stop);
+    canvas.addEventListener("mouseleave", stop);
+    canvas.addEventListener("touchstart", start, { passive: false });
+    canvas.addEventListener("touchmove", move, { passive: false });
+    canvas.addEventListener("touchend", stop);
+  }
+
+  function clearSig(id, labelId) {
+    const canvas = document.getElementById(id);
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    document.getElementById(labelId).style.opacity = "1";
+    sigDrawn[id] = false;
+  }
+
+  // ── Submit ──
+  async function submitForm() {
+    // Validate checkboxes
+    if (!document.getElementById("ack1").checked ||
+        !document.getElementById("ack2").checked ||
+        !document.getElementById("ack3").checked) {
+      alert("Please check all three acknowledgment boxes before submitting.");
+      return;
+    }
+
+    // Validate sig + printed name + date
+    let ok = true;
+    if (!sigDrawn.sigCanvas) {
+      document.getElementById("f-sigCanvas").classList.add("has-error");
+      ok = false;
+    } else {
+      document.getElementById("f-sigCanvas").classList.remove("has-error");
+    }
+    if (!req("printedName")) ok = false;
+    if (!req("sigDate")) ok = false;
+    if (!ok) return;
+
+    const payload = {
+      firstName:             document.getElementById("firstName").value.trim(),
+      lastName:              document.getElementById("lastName").value.trim(),
+      dob:                   document.getElementById("dob").value.trim(),
+      phone:                 document.getElementById("phone").value.trim(),
+      email:                 document.getElementById("email").value.trim() || "(not provided)",
+      address:               document.getElementById("address").value.trim(),
+      city:                  document.getElementById("city").value.trim(),
+      state:                 document.getElementById("state").value,
+      zip:                   document.getElementById("zip").value.trim(),
+      emergencyName:         document.getElementById("emergencyName").value.trim(),
+      emergencyPhone:        document.getElementById("emergencyPhone").value.trim(),
+      emergencyRelationship: document.getElementById("emergencyRelationship").value.trim(),
+      printedName:           document.getElementById("printedName").value.trim(),
+      signatureDate:         document.getElementById("sigDate").value.trim(),
+      clientSignature:       document.getElementById("sigCanvas").toDataURL(),
+      guardianSignature:     sigDrawn.guardianCanvas ? document.getElementById("guardianCanvas").toDataURL() : "",
+      guardianDate:          document.getElementById("guardianDate").value.trim(),
+      guardianRelationship:  document.getElementById("guardianRelationship").value.trim(),
+    };
+
+    document.getElementById("loadingOverlay").classList.add("active");
+    document.getElementById("submitBtn").disabled = true;
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      // no-cors won't return response body, treat as success
+      document.getElementById("loadingOverlay").classList.remove("active");
+      goTo(5);
+    } catch (err) {
+      document.getElementById("loadingOverlay").classList.remove("active");
+      document.getElementById("submitBtn").disabled = false;
+      alert("Submission error. Please check your internet connection and try again.\n\n" + err.message);
+    }
+  }
+
+  function resetForm() {
+    document.querySelectorAll("input[type='text'], input[type='tel'], input[type='email']").forEach(i => i.value = "");
+    document.querySelectorAll("input[type='checkbox']").forEach(i => i.checked = false);
+    document.getElementById("state").value = "MD";
+    clearSig("sigCanvas","sigLabel");
+    clearSig("guardianCanvas","guardianLabel");
+    goTo(0);
+  }
+
+  // Init canvases after layout
+  window.addEventListener("load", () => {
+    initCanvas("sigCanvas");
+    initCanvas("guardianCanvas");
+    // Auto-fill today's date
+    const today = new Date();
+    const mm = String(today.getMonth()+1).padStart(2,"0");
+    const dd = String(today.getDate()).padStart(2,"0");
+    const yyyy = today.getFullYear();
+    document.getElementById("sigDate").value = `${mm}/${dd}/${yyyy}`;
+  });
+</script>
+</body>
+</html>
