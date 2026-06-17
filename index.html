@@ -9,23 +9,26 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --primary: #1a5276;
-      --primary-light: #2e86c1;
-      --accent: #1e8449;
-      --accent-light: #27ae60;
-      --bg: #f4f8fb;
+      --primary: #0d4da3;
+      --primary-dark: #073872;
+      --primary-light: #2e7bd6;
+      --primary-tint: #eaf3fd;
+      --accent: #2a8a28;
+      --accent-dark: #1e6b1d;
+      --accent-light: #38a836;
+      --accent-tint: #eaf7ea;
+      --bg: #f4f6f8;
       --card: #ffffff;
       --text: #1c2833;
-      --muted: #566573;
-      --border: #d5dbdb;
+      --muted: #5d6b77;
+      --border: #e1e6ea;
       --error: #c0392b;
-      --success: #1e8449;
-      --radius: 10px;
-      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --radius: 12px;
+      --shadow: 0 2px 16px rgba(13,77,163,0.08);
     }
 
     body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -33,21 +36,12 @@
       flex-direction: column;
     }
 
-    header {
+    /* ── Top contact bar (always blue, mirrors footer) ── */
+    .contact-bar {
       background: var(--primary);
       color: #fff;
       text-align: center;
-      padding: 28px 20px 20px;
-    }
-    header img { max-width: 120px; margin-bottom: 12px; }
-    header h1 { font-size: 1.3rem; font-weight: 700; letter-spacing: 0.5px; }
-    header p { font-size: 0.9rem; opacity: 0.85; margin-top: 4px; }
-
-    .contact-bar {
-      background: var(--primary-light);
-      color: #fff;
-      text-align: center;
-      padding: 8px;
+      padding: 10px;
       font-size: 0.85rem;
       display: flex;
       justify-content: center;
@@ -55,37 +49,61 @@
       flex-wrap: wrap;
     }
     .contact-bar a { color: #fff; text-decoration: none; }
+    .contact-bar a:hover { text-decoration: underline; }
 
+    /* ── Step progress bar ── */
+    .progress-wrap { display: none; padding: 22px 16px 6px; }
+    .progress-wrap.active { display: block; }
     .progress-bar {
-      background: #d6eaf8;
-      padding: 16px 20px;
-      display: flex;
-      justify-content: center;
-      gap: 0;
-    }
-    .step-item {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.78rem;
-      color: var(--muted);
+      justify-content: center;
+      max-width: 560px;
+      margin: 0 auto;
     }
-    .step-item.active { color: var(--primary); font-weight: 600; }
-    .step-item.done { color: var(--accent); }
+    .step-item { display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; }
     .step-dot {
-      width: 28px; height: 28px;
+      width: 32px; height: 32px;
       border-radius: 50%;
       border: 2px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; font-weight: 700;
       background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700;
+      color: var(--muted);
+      transition: all 0.25s;
+      z-index: 2;
     }
     .step-item.active .step-dot { border-color: var(--primary); background: var(--primary); color: #fff; }
     .step-item.done .step-dot { border-color: var(--accent); background: var(--accent); color: #fff; }
-    .step-line { width: 30px; height: 2px; background: var(--border); margin: 0 4px; }
-    .step-item.done + .step-connector { background: var(--accent); }
+    .step-item span {
+      font-size: 0.72rem; font-weight: 600; color: var(--muted);
+      white-space: nowrap;
+    }
+    .step-item.active span { color: var(--primary); }
+    .step-item.done span { color: var(--accent); }
+    .step-connector {
+      flex: 1; height: 2px;
+      background: var(--border);
+      margin: 0 4px;
+      margin-bottom: 22px;
+      transition: background 0.25s;
+      min-width: 18px;
+    }
+    .step-connector.done { background: var(--accent); }
 
-    main { flex: 1; padding: 24px 16px 40px; max-width: 680px; margin: 0 auto; width: 100%; }
+    /* ── Page badge (mobile-friendly mini indicator) ── */
+    .page-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 14px;
+      margin-bottom: 14px;
+    }
+
+    main { flex: 1; padding: 10px 16px 40px; max-width: 640px; margin: 0 auto; width: 100%; }
 
     .page { display: none; }
     .page.active { display: block; }
@@ -94,18 +112,27 @@
       background: var(--card);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 28px 24px;
+      border: 1px solid var(--border);
+      padding: 28px 26px;
       margin-bottom: 16px;
     }
 
-    .card-icon { font-size: 2rem; margin-bottom: 8px; }
-    .card h2 { font-size: 1.2rem; color: var(--primary); margin-bottom: 4px; }
-    .card .subtitle { color: var(--muted); font-size: 0.88rem; margin-bottom: 20px; }
+    .card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+    .card-icon {
+      font-size: 1.3rem;
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--primary-tint);
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .card h2 { font-size: 1.15rem; color: var(--primary); font-weight: 700; }
+    .card .subtitle { color: var(--muted); font-size: 0.86rem; margin: 6px 0 20px; }
 
     .section-label {
-      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1px; color: var(--primary); margin: 20px 0 12px;
-      padding-bottom: 6px; border-bottom: 2px solid #d6eaf8;
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.6px; color: var(--primary); margin: 22px 0 12px;
+      padding-bottom: 6px; border-bottom: 2px solid var(--primary-tint);
     }
     .section-label:first-of-type { margin-top: 0; }
 
@@ -114,25 +141,29 @@
 
     .field { display: flex; flex-direction: column; gap: 5px; }
     .field label { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .field label .req { color: var(--error); }
     .field label .opt { font-weight: 400; color: var(--muted); font-size: 0.78rem; margin-left: 4px; }
     .field input, .field select {
       border: 1.5px solid var(--border);
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 10px 12px;
       font-size: 0.92rem;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
       width: 100%;
+      font-family: inherit;
+      color: var(--text);
     }
-    .field input:focus, .field select:focus { border-color: var(--primary-light); }
+    .field input:focus, .field select:focus { border-color: var(--primary-light); box-shadow: 0 0 0 3px rgba(13,77,163,0.1); }
     .field input.error { border-color: var(--error); }
     .field .err-msg { color: var(--error); font-size: 0.78rem; display: none; }
     .field.has-error .err-msg { display: block; }
 
-    .consent-section { margin-bottom: 18px; }
+    /* ── Consent sections ── */
+    .consent-section { margin-bottom: 20px; }
     .consent-section h3 {
-      font-size: 1rem; color: var(--primary); margin-bottom: 8px;
-      display: flex; align-items: center; gap: 8px;
+      font-size: 1rem; color: var(--primary); margin-bottom: 8px; font-weight: 700;
+      display: flex; align-items: center; gap: 10px;
     }
     .consent-number {
       background: var(--primary); color: #fff;
@@ -141,23 +172,42 @@
       font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
     }
     .consent-section p, .consent-section li {
-      font-size: 0.88rem; color: var(--muted); line-height: 1.6;
+      font-size: 0.88rem; color: var(--text); line-height: 1.65;
     }
     .consent-section ul { padding-left: 20px; margin-top: 6px; }
+    .consent-section hr { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+
     .risk-box {
       background: #fef9e7;
       border-left: 4px solid #f39c12;
-      border-radius: 4px;
-      padding: 10px 14px;
-      margin-top: 8px;
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-top: 10px;
     }
-    .risk-box p { font-weight: 600; color: #7d6608; font-size: 0.85rem; margin-bottom: 4px; }
+    .risk-box p { font-weight: 700; color: #7d6608; font-size: 0.85rem; margin-bottom: 6px; }
 
-    /* Signature canvas */
+    .info-box {
+      background: var(--primary-tint);
+      border-left: 4px solid var(--primary);
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-top: 10px;
+    }
+    .info-box p { font-weight: 700; color: var(--primary-dark); font-size: 0.85rem; margin-bottom: 0; }
+    .info-box ul { margin-top: 6px; }
+    .info-box li { color: var(--primary-dark); }
+
+    .check-line {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.88rem; color: var(--text); margin-bottom: 6px;
+    }
+    .check-line .tick { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+    /* ── Signature canvas ── */
     .sig-container {
       border: 2px dashed var(--border);
-      border-radius: 8px;
-      background: #f9f9f9;
+      border-radius: 10px;
+      background: #fafbfc;
       position: relative;
       overflow: hidden;
       margin-top: 6px;
@@ -165,148 +215,186 @@
     .sig-container canvas { display: block; touch-action: none; cursor: crosshair; width: 100%; }
     .sig-label {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      color: #ccc; font-size: 0.85rem; pointer-events: none; text-align: center;
+      color: #b6c0c8; font-size: 0.85rem; pointer-events: none; text-align: center;
       transition: opacity 0.2s;
     }
     .sig-clear {
       position: absolute; top: 6px; right: 8px;
-      background: none; border: 1px solid var(--border);
-      border-radius: 4px; padding: 3px 8px;
-      font-size: 0.75rem; cursor: pointer; color: var(--muted);
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 6px; padding: 4px 10px;
+      font-size: 0.75rem; cursor: pointer; color: var(--primary);
+      font-weight: 600;
     }
+    .sig-clear:hover { background: var(--primary-tint); }
 
     .checkbox-row {
       display: flex; align-items: flex-start; gap: 10px;
-      background: #eaf4fb; border-radius: 6px; padding: 12px;
+      background: var(--accent-tint); border-radius: 8px; padding: 12px 14px;
       margin-bottom: 10px;
+      border: 1px solid #d3ecd3;
     }
-    .checkbox-row input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: var(--primary); }
+    .checkbox-row input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: var(--accent); }
     .checkbox-row label { font-size: 0.87rem; color: var(--text); line-height: 1.4; cursor: pointer; }
 
     .guardian-divider {
       border: none; border-top: 2px dashed var(--border);
-      margin: 24px 0 16px;
+      margin: 26px 0 16px;
     }
     .guardian-label {
       text-align: center; color: var(--muted);
-      font-size: 0.82rem; margin-bottom: 16px;
+      font-size: 0.82rem; margin-bottom: 16px; font-weight: 600;
     }
 
-    .btn-row { display: flex; gap: 12px; margin-top: 20px; }
+    .btn-row { display: flex; gap: 12px; margin-top: 24px; }
     .btn {
       flex: 1; padding: 13px;
-      border: none; border-radius: 8px;
-      font-size: 0.95rem; font-weight: 600;
-      cursor: pointer; transition: background 0.2s, transform 0.1s;
+      border: none; border-radius: 9px;
+      font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
     }
     .btn:active { transform: scale(0.98); }
     .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: var(--primary-light); }
-    .btn-secondary { background: #eaf4fb; color: var(--primary); border: 1.5px solid #aed6f1; }
-    .btn-secondary:hover { background: #d6eaf8; }
+    .btn-primary:hover { background: var(--primary-light); box-shadow: 0 4px 14px rgba(13,77,163,0.25); }
+    .btn-secondary { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
+    .btn-secondary:hover { background: var(--primary-tint); }
     .btn-submit { background: var(--accent); color: #fff; }
-    .btn-submit:hover { background: var(--accent-light); }
+    .btn-submit:hover { background: var(--accent-light); box-shadow: 0 4px 14px rgba(42,138,40,0.3); }
     .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
     .security-note {
       text-align: center; font-size: 0.78rem; color: var(--muted);
-      margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 5px;
+      margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 5px;
     }
 
-    /* Landing page */
-    .landing { text-align: center; padding: 12px 0; }
-    .landing .address { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
+    /* ── Landing page ── */
+    .landing { text-align: center; padding: 8px 4px; }
+    .landing .logo-row {
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 26px;
+    }
+    .landing .logo-img { width: 100%; max-width: 420px; height: auto; }
+    .landing h1.org-name {
+      color: var(--primary); font-size: 1.25rem; font-weight: 800;
+      letter-spacing: 0.3px; margin-bottom: 14px; line-height: 1.4;
+    }
+    .landing .divider-row {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-bottom: 16px;
+    }
+    .landing .divider-row .line { flex: 1; max-width: 110px; height: 1.5px; background: var(--accent); }
+    .landing .divider-row .heart { color: var(--accent); font-size: 0.9rem; }
+    .landing .address {
+      color: var(--text); font-size: 0.9rem; margin-bottom: 22px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .landing .consent-title-row {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin-bottom: 22px;
+    }
+    .landing .consent-title-icon { font-size: 1.6rem; }
+    .landing .consent-title-text { text-align: left; }
+    .landing .consent-title-text h2 { color: var(--accent); font-size: 1.15rem; font-weight: 800; line-height: 1.35; }
+    .landing .consent-title-text p { color: var(--muted); font-size: 0.85rem; margin-top: 6px; line-height: 1.5; }
     .landing .start-btn {
-      background: var(--accent); color: #fff;
-      border: none; border-radius: 8px;
-      padding: 16px 40px; font-size: 1.05rem; font-weight: 700;
-      cursor: pointer; transition: background 0.2s;
+      background: var(--primary); color: #fff;
+      border: none; border-radius: 9px;
+      padding: 15px 44px; font-size: 1.02rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s, box-shadow 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
     }
-    .landing .start-btn:hover { background: var(--accent-light); }
-    .landing p.intro { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 24px; }
+    .landing .start-btn:hover { background: var(--primary-light); box-shadow: 0 4px 16px rgba(13,77,163,0.3); }
 
-    /* Success */
-    .success-card { text-align: center; padding: 40px 24px; }
-    .success-icon { font-size: 4rem; margin-bottom: 16px; }
-    .success-card h2 { color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
-    .success-card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 24px; }
+    /* ── Success ── */
+    .success-card { text-align: center; padding: 44px 24px; }
+    .success-icon {
+      width: 70px; height: 70px; border-radius: 50%;
+      background: var(--accent-tint);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; margin: 0 auto 18px;
+      color: var(--accent);
+    }
+    .success-card h2 { color: var(--accent-dark); font-size: 1.4rem; margin-bottom: 10px; font-weight: 800; }
+    .success-card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 26px; line-height: 1.6; }
     .success-card .new-btn {
       background: var(--primary); color: #fff;
-      border: none; border-radius: 8px;
-      padding: 12px 28px; font-size: 0.95rem; font-weight: 600;
+      border: none; border-radius: 9px;
+      padding: 12px 28px; font-size: 0.95rem; font-weight: 700;
       cursor: pointer;
     }
+    .success-card .new-btn:hover { background: var(--primary-light); }
 
-    /* Loading overlay */
+    /* ── Loading overlay ── */
     .overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.45); z-index: 999;
+      background: rgba(7,56,114,0.5); z-index: 999;
       align-items: center; justify-content: center;
     }
     .overlay.active { display: flex; }
     .spinner-card {
-      background: #fff; border-radius: 12px; padding: 32px 40px;
-      text-align: center;
+      background: #fff; border-radius: 14px; padding: 34px 42px;
+      text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.2);
     }
     .spinner {
-      width: 48px; height: 48px;
-      border: 5px solid #d6eaf8;
+      width: 46px; height: 46px;
+      border: 5px solid var(--primary-tint);
       border-top-color: var(--primary);
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       margin: 0 auto 16px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .spinner-card p { color: var(--text); font-size: 0.95rem; }
+    .spinner-card p { color: var(--text); font-size: 0.95rem; font-weight: 600; }
 
     footer {
       background: var(--primary);
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.8);
       text-align: center;
-      padding: 14px;
+      padding: 16px;
       font-size: 0.8rem;
+      line-height: 1.8;
     }
-    footer a { color: rgba(255,255,255,0.9); }
+    footer a { color: #fff; text-decoration: none; font-weight: 600; }
+    footer a:hover { text-decoration: underline; }
+    footer .copyright { opacity: 0.7; font-size: 0.75rem; margin-top: 4px; }
 
     @media (max-width: 480px) {
       .form-grid { grid-template-columns: 1fr; }
       .form-grid .full { grid-column: 1; }
-      .card { padding: 20px 16px; }
+      .card { padding: 22px 18px; }
       .step-item span { display: none; }
-      .step-line { width: 16px; }
+      .step-connector { margin-bottom: 16px; }
+      .landing .consent-title-row { flex-direction: column; text-align: center; }
+      .landing .consent-title-text { text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <img src="assets/main-logo.png" alt="Yeshua Restoration and Healing Center logo" onerror="this.style.display='none'" />
-  <h1>YESHUA RESTORATION AND HEALING CENTER LLC</h1>
-  <p>Informed Consent for Mental Health Services</p>
-</header>
-
 <div class="contact-bar">
-  <a href="tel:240-252-4249">☎️ 240-252-4249</a>
-  <a href="tel:240-477-3626">☎️ 240-477-3626</a>
+  <a href="tel:240-252-4249">📞 240-252-4249</a>
+  <a href="tel:240-477-3626">📞 240-477-3626</a>
   <a href="mailto:info@yeshuarhc.com">✉️ info@yeshuarhc.com</a>
 </div>
 
 <!-- Progress Bar -->
-<div class="progress-bar" id="progressBar" style="display:none;">
-  <div class="step-item" id="pStep1">
-    <div class="step-dot">1</div><span>Info</span>
-  </div>
-  <div class="step-line"></div>
-  <div class="step-item" id="pStep2">
-    <div class="step-dot">2</div><span>Services</span>
-  </div>
-  <div class="step-line"></div>
-  <div class="step-item" id="pStep3">
-    <div class="step-dot">3</div><span>Privacy</span>
-  </div>
-  <div class="step-line"></div>
-  <div class="step-item" id="pStep4">
-    <div class="step-dot">4</div><span>Signature</span>
+<div class="progress-wrap" id="progressWrap">
+  <div class="progress-bar" id="progressBar">
+    <div class="step-item" id="pStep1">
+      <div class="step-dot" id="pDot1">1</div><span>Client Information</span>
+    </div>
+    <div class="step-connector" id="pConn1"></div>
+    <div class="step-item" id="pStep2">
+      <div class="step-dot" id="pDot2">2</div><span>Services</span>
+    </div>
+    <div class="step-connector" id="pConn2"></div>
+    <div class="step-item" id="pStep3">
+      <div class="step-dot" id="pDot3">3</div><span>Confidentiality</span>
+    </div>
+    <div class="step-connector" id="pConn3"></div>
+    <div class="step-item" id="pStep4">
+      <div class="step-dot" id="pDot4">4</div><span>Signature</span>
+    </div>
   </div>
 </div>
 
@@ -315,10 +403,22 @@
   <!-- PAGE 0: LANDING -->
   <div class="page active" id="page0">
     <div class="card landing">
-      <div class="card-icon">📋</div>
-      <h2 style="color:var(--primary);font-size:1.3rem;margin-bottom:8px;">Informed Consent Form</h2>
-      <p class="address">📍 4690 Millennium Dr. Suite 300, Belcamp MD 21017</p>
-      <p class="intro">Please read each section carefully and provide the requested information.<br/>This form is required before receiving mental health services.</p>
+      <span class="page-badge">Page 1 of 6</span>
+      <div class="logo-row">
+        <img src="assets/main-logo.png" alt="Yeshua Restoration and Healing Center logo" class="logo-img" />
+      </div>
+      <h1 class="org-name">YESHUA RESTORATION AND<br/>HEALING CENTER LLC</h1>
+      <div class="divider-row">
+        <span class="line"></span><span class="heart">❤</span><span class="line"></span>
+      </div>
+      <p class="address">📍 4690 Millennium Dr. Suite 300,<br/>Belcamp MD 21017</p>
+      <div class="consent-title-row">
+        <span class="consent-title-icon">📄</span>
+        <div class="consent-title-text">
+          <h2>Informed Consent for<br/>Mental Health Services</h2>
+          <p>Please read each section carefully<br/>and provide the requested information.</p>
+        </div>
+      </div>
       <button class="start-btn" onclick="goTo(1)">Start →</button>
     </div>
   </div>
@@ -326,48 +426,50 @@
   <!-- PAGE 1: CLIENT INFO -->
   <div class="page" id="page1">
     <div class="card">
-      <div class="card-icon">👤</div>
-      <h2>STEP 1: CLIENT INFORMATION</h2>
+      <span class="page-badge">Page 2 of 6</span>
+      <div class="card-head">
+        <div class="card-icon">👤</div>
+        <h2>STEP 1: CLIENT INFORMATION</h2>
+      </div>
       <p class="subtitle">Please provide the following information.</p>
 
-      <div class="section-label">Personal Information</div>
       <div class="form-grid">
         <div class="field" id="f-firstName">
-          <label for="firstName">First Name <span style="color:red">*</span></label>
-          <input type="text" id="firstName" placeholder="First name" />
+          <label for="firstName">First Name <span class="req">*</span></label>
+          <input type="text" id="firstName" placeholder="First Name" />
           <span class="err-msg">Required</span>
         </div>
         <div class="field" id="f-lastName">
-          <label for="lastName">Last Name <span style="color:red">*</span></label>
-          <input type="text" id="lastName" placeholder="Last name" />
+          <label for="lastName">Last Name <span class="req">*</span></label>
+          <input type="text" id="lastName" placeholder="Last Name" />
           <span class="err-msg">Required</span>
         </div>
         <div class="field" id="f-dob">
-          <label for="dob">Date of Birth <span style="color:red">*</span></label>
+          <label for="dob">Date of Birth <span class="req">*</span></label>
           <input type="text" id="dob" placeholder="MM/DD/YYYY" maxlength="10" />
           <span class="err-msg">Required (MM/DD/YYYY)</span>
         </div>
         <div class="field" id="f-phone">
-          <label for="phone">Phone Number <span style="color:red">*</span></label>
+          <label for="phone">Phone Number <span class="req">*</span></label>
           <input type="tel" id="phone" placeholder="(000) 000-0000" />
           <span class="err-msg">Required</span>
         </div>
         <div class="field full" id="f-email">
           <label for="email">Email Address <span class="opt">(optional)</span></label>
-          <input type="email" id="email" placeholder="email@example.com (optional)" />
+          <input type="email" id="email" placeholder="name@example.com (optional)" />
         </div>
         <div class="field full" id="f-address">
-          <label for="address">Street Address <span style="color:red">*</span></label>
-          <input type="text" id="address" placeholder="123 Main St" />
+          <label for="address">Address <span class="req">*</span></label>
+          <input type="text" id="address" placeholder="Street Address" />
           <span class="err-msg">Required</span>
         </div>
         <div class="field" id="f-city">
-          <label for="city">City <span style="color:red">*</span></label>
+          <label for="city">City <span class="req">*</span></label>
           <input type="text" id="city" placeholder="City" />
           <span class="err-msg">Required</span>
         </div>
         <div class="field" id="f-state">
-          <label for="state">State <span style="color:red">*</span></label>
+          <label for="state">State <span class="req">*</span></label>
           <select id="state">
             <option value="">Select State</option>
             <option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option>
@@ -391,34 +493,29 @@
           <span class="err-msg">Required</span>
         </div>
         <div class="field" id="f-zip">
-          <label for="zip">ZIP Code <span style="color:red">*</span></label>
-          <input type="text" id="zip" placeholder="00000" maxlength="5" />
+          <label for="zip">Zip Code <span class="req">*</span></label>
+          <input type="text" id="zip" placeholder="Zip Code" maxlength="5" />
           <span class="err-msg">Required</span>
         </div>
-      </div>
-
-      <div class="section-label">Emergency Contact</div>
-      <div class="form-grid">
         <div class="field" id="f-emergencyName">
-          <label for="emergencyName">Emergency Contact Name <span style="color:red">*</span></label>
-          <input type="text" id="emergencyName" placeholder="Full name" />
+          <label for="emergencyName">Emergency Contact Name <span class="req">*</span></label>
+          <input type="text" id="emergencyName" placeholder="Full Name" />
           <span class="err-msg">Required</span>
         </div>
         <div class="field" id="f-emergencyPhone">
-          <label for="emergencyPhone">Emergency Contact Phone <span style="color:red">*</span></label>
+          <label for="emergencyPhone">Emergency Contact Phone <span class="req">*</span></label>
           <input type="tel" id="emergencyPhone" placeholder="(000) 000-0000" />
           <span class="err-msg">Required</span>
         </div>
         <div class="field full">
-          <label for="emergencyRelationship">Relationship to Client</label>
+          <label for="emergencyRelationship">Relationship to Client <span class="opt">(optional)</span></label>
           <input type="text" id="emergencyRelationship" placeholder="e.g. Spouse, Parent, Sibling" />
         </div>
       </div>
 
-      <p class="security-note">🔒 Your information is encrypted and secure.</p>
+      <p class="security-note">🔒 Your information is secure and confidential.</p>
       <div class="btn-row">
-        <button class="btn btn-secondary" onclick="goTo(0)">← Back</button>
-        <button class="btn btn-primary" onclick="validateStep1()">Continue →</button>
+        <button class="btn btn-primary" style="flex:1;" onclick="validateStep1()">Continue →</button>
       </div>
     </div>
   </div>
@@ -426,14 +523,18 @@
   <!-- PAGE 2: SERVICES -->
   <div class="page" id="page2">
     <div class="card">
-      <div class="card-icon">📋</div>
-      <h2>STEP 2: INFORMED CONSENT</h2>
-      <p class="subtitle">Please read the following carefully.</p>
+      <span class="page-badge">Page 3 of 6</span>
+      <div class="card-head">
+        <div class="card-icon">📋</div>
+        <h2>STEP 2: INFORMED CONSENT – PART 1</h2>
+      </div>
 
       <div class="consent-section">
         <h3><span class="consent-number">1</span> Purpose of Services</h3>
         <p>I understand that I am seeking psychiatric–mental health services, which may include evaluation, diagnosis, treatment planning, psychotherapy, medication management, and/or other mental health interventions provided by a qualified mental health professional.</p>
       </div>
+
+      <hr/>
 
       <div class="consent-section">
         <h3><span class="consent-number">2</span> Nature of Treatment</h3>
@@ -441,34 +542,11 @@
         <ul>
           <li>Clinical interviews and mental health assessments</li>
           <li>Psychotherapy or counseling</li>
-          <li>Prescription and management of psychiatric medications</li>
+          <li>Prescription and management of psychiatric medications (if applicable)</li>
           <li>Coordination of care with other healthcare providers</li>
           <li>Review of my medical, psychological, and social history</li>
         </ul>
-        <p style="margin-top:8px;">The specific treatment approach will be discussed with me and may change based on my needs.</p>
-      </div>
-
-      <div class="consent-section">
-        <h3><span class="consent-number">3</span> Benefits and Risks</h3>
-        <p>I understand that potential benefits of treatment may include improvement in symptoms, functioning, and overall well-being.</p>
-        <div class="risk-box">
-          <p>⚠️ Risks may include:</p>
-          <ul>
-            <li>Emotional discomfort when discussing sensitive topics</li>
-            <li>Possible side effects of medications</li>
-            <li>No guarantee of improvement</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="consent-section">
-        <h3><span class="consent-number">4</span> Alternatives to Treatment</h3>
-        <p>I understand that alternatives may include declining treatment, seeking services from another provider, or using non-psychiatric interventions.</p>
-      </div>
-
-      <div class="consent-section">
-        <h3><span class="consent-number">5</span> Medications (if applicable)</h3>
-        <p>If prescribed, I understand the purpose of the medication, possible benefits and side effects, risks of not taking medication as prescribed, and my responsibility to report side effects or concerns.</p>
+        <p style="margin-top:10px;">The specific treatment approach will be discussed with me and may change based on my needs.</p>
       </div>
 
       <div class="btn-row">
@@ -478,44 +556,46 @@
     </div>
   </div>
 
-  <!-- PAGE 3: CONFIDENTIALITY -->
+  <!-- PAGE 3: SERVICES PART 2 -->
   <div class="page" id="page3">
     <div class="card">
-      <div class="card-icon">🔒</div>
-      <h2>STEP 3: CONFIDENTIALITY</h2>
-      <p class="subtitle">Your rights and our privacy obligations.</p>
-
-      <div class="consent-section">
-        <h3><span class="consent-number">6</span> Confidentiality</h3>
-        <p>I understand that information shared during treatment is confidential and protected by law under HIPAA (Health Insurance Portability and Accountability Act).</p>
-        <div class="risk-box" style="background:#eaf4fb;border-color:#2e86c1;">
-          <p style="color:#1a5276;">Exceptions to confidentiality include:</p>
-          <ul>
-            <li>Risk of harm to myself or others</li>
-            <li>Suspected abuse or neglect</li>
-            <li>Court orders or legal requirements</li>
-            <li>Coordination of care with other healthcare providers (with consent)</li>
-          </ul>
-        </div>
+      <span class="page-badge">Page 4 of 6</span>
+      <div class="card-head">
+        <div class="card-icon">📋</div>
+        <h2>STEP 2: INFORMED CONSENT – PART 2</h2>
       </div>
 
       <div class="consent-section">
-        <h3><span class="consent-number">7</span> Client Rights and Responsibilities</h3>
-        <p><strong>I understand my rights include:</strong></p>
+        <h3><span class="consent-number">3</span> Benefits and Risks</h3>
+        <p>I understand that potential benefits of treatment may include improvement in symptoms, functioning, and overall well-being. I also understand that there may be risks, including but not limited to:</p>
+        <div class="risk-box">
+          <p>⚠️ Risks may include:</p>
+          <ul>
+            <li>Emotional discomfort when discussing sensitive topics</li>
+            <li>Possible side effects of medications</li>
+            <li>No guarantee of improvement</li>
+          </ul>
+        </div>
+        <p style="margin-top:10px;">These risks and benefits have been explained to me, and I have had the opportunity to ask questions.</p>
+      </div>
+
+      <hr/>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">4</span> Alternatives to Treatment</h3>
+        <p>I understand that alternatives may include declining treatment, seeking services from another provider, or using non-psychiatric interventions. I understand that I may discuss these alternatives with my provider.</p>
+      </div>
+
+      <hr/>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">5</span> Medications (if applicable)</h3>
+        <p>If medications are prescribed, I understand:</p>
         <ul>
-          <li>Ask questions about my treatment at any time</li>
-          <li>Participate actively in treatment decisions</li>
-          <li>Withdraw consent at any time (with notice)</li>
-          <li>Access to my medical records</li>
-          <li>Request amendments to my records</li>
-          <li>Receive notice of privacy practices</li>
-        </ul>
-        <p style="margin-top:10px;"><strong>My responsibilities include:</strong></p>
-        <ul>
-          <li>Provide accurate and complete information</li>
-          <li>Inform provider of any changes in my condition</li>
-          <li>Follow treatment recommendations</li>
-          <li>Inform provider of medications from other sources</li>
+          <li>The purpose of the medication</li>
+          <li>Possible benefits and side effects</li>
+          <li>Risks of not taking medication as prescribed</li>
+          <li>My responsibility to report side effects or concerns</li>
         </ul>
       </div>
 
@@ -526,12 +606,66 @@
     </div>
   </div>
 
-  <!-- PAGE 4: SIGNATURE -->
+  <!-- PAGE 4: CONFIDENTIALITY -->
   <div class="page" id="page4">
     <div class="card">
-      <div class="card-icon">✍️</div>
-      <h2>STEP 4: CONSENT & SIGNATURE</h2>
-      <p class="subtitle">Review and sign below to complete your consent.</p>
+      <span class="page-badge">Page 5 of 6</span>
+      <div class="card-head">
+        <div class="card-icon">🔒</div>
+        <h2>STEP 3: CONFIDENTIALITY & PRIVACY</h2>
+      </div>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">6</span> Confidentiality</h3>
+        <p>I understand that information shared during treatment is confidential and protected by law under HIPAA (Health Insurance Portability and Accountability Act).</p>
+        <p style="margin-top:8px;">Exceptions to confidentiality include, but are not limited to:</p>
+        <div class="info-box">
+          <ul>
+            <li>Risk of harm to myself or others</li>
+            <li>Suspected abuse or neglect of a child, elderly person, or dependent adult</li>
+            <li>Court orders or legal requirements</li>
+            <li>Coordination of care with other healthcare providers (with consent)</li>
+          </ul>
+        </div>
+        <p style="margin-top:10px;">These limits to confidentiality have been explained to me.</p>
+      </div>
+
+      <hr/>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">7</span> Client Rights and Responsibilities</h3>
+        <p>I understand that I have the right to:</p>
+        <ul>
+          <li>Ask questions about my treatment at any time</li>
+          <li>Participate actively in treatment decisions</li>
+          <li>Withdraw consent or discontinue treatment at any time</li>
+          <li>Access to my medical records</li>
+          <li>Request amendments to my records</li>
+          <li>Receive notice of privacy practices</li>
+        </ul>
+        <p style="margin-top:10px;">I understand that I am responsible for providing accurate information and participating honestly in my care.</p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goTo(3)">← Back</button>
+        <button class="btn btn-primary" onclick="goTo(5)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 5: SIGNATURE -->
+  <div class="page" id="page5">
+    <div class="card">
+      <span class="page-badge">Page 6 of 6</span>
+      <div class="card-head">
+        <div class="card-icon">✍️</div>
+        <h2>STEP 4: SIGNATURE</h2>
+      </div>
+
+      <div class="consent-section">
+        <h3><span class="consent-number">8</span> Consent</h3>
+        <p style="margin-bottom:10px;">I acknowledge that:</p>
+      </div>
 
       <div class="checkbox-row">
         <input type="checkbox" id="ack1" />
@@ -546,67 +680,69 @@
         <label for="ack3">I voluntarily consent to receive psychiatric–mental health services</label>
       </div>
 
-      <div class="section-label" style="margin-top:20px;">Client Signature</div>
-      <div class="field" id="f-sigCanvas">
-        <label>Signature <span style="color:red">*</span></label>
-        <div class="sig-container">
-          <canvas id="sigCanvas" height="130"></canvas>
-          <span class="sig-label" id="sigLabel">Sign here with your finger or mouse</span>
-          <button class="sig-clear" onclick="clearSig('sigCanvas','sigLabel')">Clear</button>
-        </div>
-        <span class="err-msg">Please provide your signature</span>
-      </div>
-
-      <div class="form-grid" style="margin-top:14px;">
-        <div class="field full" id="f-printedName">
-          <label for="printedName">Printed Name <span style="color:red">*</span></label>
-          <input type="text" id="printedName" placeholder="Full legal name" />
-          <span class="err-msg">Required</span>
+      <div class="form-grid" style="margin-top:22px;">
+        <div class="field full" id="f-sigCanvas">
+          <label>Client Signature <span class="req">*</span></label>
+          <div class="sig-container">
+            <canvas id="sigCanvas" height="120"></canvas>
+            <span class="sig-label" id="sigLabel">Type or sign your name</span>
+            <button class="sig-clear" onclick="clearSig('sigCanvas','sigLabel')">Clear</button>
+          </div>
+          <span class="err-msg">Please provide your signature</span>
         </div>
         <div class="field" id="f-sigDate">
-          <label for="sigDate">Date <span style="color:red">*</span></label>
+          <label for="sigDate">Date <span class="req">*</span></label>
           <input type="text" id="sigDate" placeholder="MM/DD/YYYY" maxlength="10" />
+          <span class="err-msg">Required</span>
+        </div>
+        <div class="field" id="f-printedName">
+          <label for="printedName">Printed Name <span class="req">*</span></label>
+          <input type="text" id="printedName" placeholder="Full Name" />
           <span class="err-msg">Required</span>
         </div>
       </div>
 
       <hr class="guardian-divider" />
-      <p class="guardian-label">— Legal Guardian / Authorized Representative (if applicable) —</p>
+      <p class="guardian-label">If applicable: Legal Guardian / Authorized Representative</p>
 
-      <div class="field">
-        <label>Guardian Signature <span class="opt">(if applicable)</span></label>
-        <div class="sig-container">
-          <canvas id="guardianCanvas" height="110"></canvas>
-          <span class="sig-label" id="guardianLabel">Guardian sign here (optional)</span>
-          <button class="sig-clear" onclick="clearSig('guardianCanvas','guardianLabel')">Clear</button>
+      <div class="form-grid">
+        <div class="field full">
+          <label>Legal Guardian / Authorized Representative Signature <span class="opt">(if applicable)</span></label>
+          <div class="sig-container">
+            <canvas id="guardianCanvas" height="100"></canvas>
+            <span class="sig-label" id="guardianLabel">Type or sign your name</span>
+            <button class="sig-clear" onclick="clearSig('guardianCanvas','guardianLabel')">Clear</button>
+          </div>
         </div>
-      </div>
-
-      <div class="form-grid" style="margin-top:14px;">
         <div class="field">
           <label for="guardianDate">Date</label>
           <input type="text" id="guardianDate" placeholder="MM/DD/YYYY" maxlength="10" />
         </div>
         <div class="field">
           <label for="guardianRelationship">Relationship to Client</label>
-          <input type="text" id="guardianRelationship" placeholder="e.g. Parent, Guardian" />
+          <input type="text" id="guardianRelationship" placeholder="Relationship" />
         </div>
       </div>
 
-      <p class="security-note" style="margin-top:20px;">🔒 Your information is encrypted and securely transmitted under HIPAA guidelines.</p>
+      <div class="info-box" style="margin-top:22px; display:flex; align-items:center; gap:10px;">
+        <span style="font-size:1.3rem;">📧</span>
+        <p style="font-weight:500;">A copy of this consent form will be saved securely. The company will store a copy in their records folder.</p>
+      </div>
+
+      <p class="security-note">🔒 Your information is encrypted and securely transmitted under HIPAA guidelines.</p>
       <div class="btn-row">
-        <button class="btn btn-secondary" onclick="goTo(3)">← Back</button>
+        <button class="btn btn-secondary" onclick="goTo(4)">← Back</button>
         <button class="btn btn-submit" id="submitBtn" onclick="submitForm()">Submit ✈</button>
       </div>
     </div>
   </div>
 
-  <!-- PAGE 5: SUCCESS -->
-  <div class="page" id="page5">
+  <!-- PAGE 6: SUCCESS -->
+  <div class="page" id="page6">
     <div class="card success-card">
-      <div class="success-icon">✅</div>
-      <h2>Form Submitted Successfully!</h2>
-      <p>Your consent form has been securely saved.<br/>A copy has been recorded in the company's records.</p>
+      <div class="success-icon">✓</div>
+      <h2>Success!</h2>
+      <p>Your consent form has been successfully saved.<br/>A copy is stored in the company's records for your protection.</p>
       <button class="new-btn" onclick="resetForm()">Start New Form</button>
     </div>
   </div>
@@ -624,21 +760,23 @@
 <footer>
   📞 <a href="tel:240-252-4249">240-252-4249</a> &nbsp;|&nbsp;
   📞 <a href="tel:240-477-3626">240-477-3626</a> &nbsp;|&nbsp;
-  ✉️ <a href="mailto:info@yeshuarhc.com">info@yeshuarhc.com</a><br/>
-  <br/>© 2024 Yeshua Restoration and Healing Center LLC | All Rights Reserved
+  ✉️ <a href="mailto:info@yeshuarhc.com">info@yeshuarhc.com</a>
+  <div class="copyright">© 2024 Yeshua Restoration and Healing Center LLC | All Rights Reserved</div>
 </footer>
 
 <script>
   // ─────────────────────────────────────────────
-  // ⚙️  CONFIGURATION — PASTE YOUR SCRIPT URL HERE
+  // ⚙️  CONFIGURATION — YOUR GOOGLE SCRIPT URL
   // ─────────────────────────────────────────────
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyppQdils-Mq1SNDmDsTghymQSx5271hKogqEt6-gyRA-VYp73PbOWgz4DGRtQY-9OD/exec";
   // ─────────────────────────────────────────────
 
   let currentPage = 0;
   let sigDrawn = { sigCanvas: false, guardianCanvas: false };
+  const TOTAL_PAGES = 6; // page1..page5 are steps; mapped to progress 1-4 below
+  // Map actual page index -> progress step number (1-4)
+  const pageToStep = { 1:1, 2:2, 3:2, 4:3, 5:4 };
 
-  // ── Navigation ──
   function goTo(n) {
     document.getElementById("page" + currentPage).classList.remove("active");
     document.getElementById("page" + n).classList.add("active");
@@ -648,17 +786,29 @@
   }
 
   function updateProgress() {
-    const bar = document.getElementById("progressBar");
-    bar.style.display = currentPage >= 1 && currentPage <= 4 ? "flex" : "none";
+    const wrap = document.getElementById("progressWrap");
+    const step = pageToStep[currentPage];
+    wrap.classList.toggle("active", !!step);
+    if (!step) return;
+
     for (let i = 1; i <= 4; i++) {
-      const el = document.getElementById("pStep" + i);
-      el.classList.remove("active", "done");
-      if (i < currentPage) el.classList.add("done");
-      if (i === currentPage) el.classList.add("active");
+      const dotItem = document.getElementById("pStep" + i);
+      dotItem.classList.remove("active", "done");
+      if (i < step) dotItem.classList.add("done");
+      if (i === step) dotItem.classList.add("active");
+
+      if (i < 4) {
+        const conn = document.getElementById("pConn" + i);
+        conn.classList.toggle("done", i < step);
+      }
+    }
+    // Show checkmark on done dots
+    for (let i = 1; i <= 4; i++) {
+      const dot = document.getElementById("pDot" + i);
+      dot.textContent = (i < step) ? "✓" : i;
     }
   }
 
-  // ── Validation helpers ──
   function req(id) {
     const f = document.getElementById("f-" + id);
     const v = document.getElementById(id).value.trim();
@@ -677,12 +827,11 @@
     if (ok) goTo(2);
   }
 
-  // ── Signature canvas ──
   function initCanvas(id) {
     const canvas = document.getElementById(id);
     const ctx = canvas.getContext("2d");
     canvas.width = canvas.offsetWidth || canvas.parentElement.offsetWidth || 600;
-    ctx.strokeStyle = "#1a5276";
+    ctx.strokeStyle = "#0d4da3";
     ctx.lineWidth = 2.5;
     ctx.lineCap = "round";
     let drawing = false, lastX = 0, lastY = 0;
@@ -729,9 +878,7 @@
     sigDrawn[id] = false;
   }
 
-  // ── Submit ──
   async function submitForm() {
-    // Validate checkboxes
     if (!document.getElementById("ack1").checked ||
         !document.getElementById("ack2").checked ||
         !document.getElementById("ack3").checked) {
@@ -739,7 +886,6 @@
       return;
     }
 
-    // Validate sig + printed name + date
     let ok = true;
     if (!sigDrawn.sigCanvas) {
       document.getElementById("f-sigCanvas").classList.add("has-error");
@@ -782,9 +928,8 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      // no-cors won't return response body, treat as success
       document.getElementById("loadingOverlay").classList.remove("active");
-      goTo(5);
+      goTo(6);
     } catch (err) {
       document.getElementById("loadingOverlay").classList.remove("active");
       document.getElementById("submitBtn").disabled = false;
@@ -801,11 +946,9 @@
     goTo(0);
   }
 
-  // Init canvases after layout
   window.addEventListener("load", () => {
     initCanvas("sigCanvas");
     initCanvas("guardianCanvas");
-    // Auto-fill today's date
     const today = new Date();
     const mm = String(today.getMonth()+1).padStart(2,"0");
     const dd = String(today.getDate()).padStart(2,"0");
